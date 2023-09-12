@@ -4,6 +4,7 @@ import { filterByName } from 'redux/filterSlice';
 import { selectFilter } from 'redux/selectors';
 
 import style from './Filter.module.css';
+import ContactInput from 'components/ContactInput/ContactInput';
 
 export const Filter = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,12 @@ export const Filter = () => {
   return (
     <label className={style.filter__label}>
       Find contacts by name
-      <input onChange={onFilter} type="text" name="filter" value={selector} />
+      <ContactInput
+        onChange={onFilter}
+        type="text"
+        name="filter"
+        value={selector}
+      />
     </label>
   );
 };

@@ -8,6 +8,8 @@ import {
   deleteContact,
   fetchContacts,
 } from 'redux/contacts/contactsOperations';
+import RedButton from 'components/RedButton/RedButton';
+import PrimaryButton from 'components/PrimaryButton/PrimaryButton';
 
 export const ContactList = () => {
   const contacts = useSelector(selectFilteredContactList);
@@ -32,14 +34,14 @@ export const ContactList = () => {
             <li key={id ? id : name} className={style.contact__item}>
               <span className="name">{name}:</span>
               <span className="phone">{number}</span>
-              <button
+              <PrimaryButton
                 type="button"
                 onClick={() => {
                   onDeleteContact(id);
                 }}
               >
                 Delete
-              </button>
+              </PrimaryButton>
             </li>
           );
         })}

@@ -1,43 +1,64 @@
 import UserMenu from 'components/UserMenu/UserMenu';
-import React from 'react';
+import NavigationListItem from './NavigationListItem';
+
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { selectIsLoggedIn } from 'redux/auth/slice';
+import clsx from 'clsx';
+import { useRef } from 'react';
 
 function Navigation() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const ref = useRef(null);
+  const classes = 'bg-emerald-700 shadow-lg shadow-emerald-500 text-white';
 
   return (
     <nav className="navigation">
-      <ul className="header__menu">
-        <li className="header__item">
-          <Link to={'/'} className="header__Link">
+      <ul className="header__menu flex gap-10 items-start">
+        <NavigationListItem>
+          <NavLink
+            ref={ref}
+            to={'/'}
+            className={clsx('header__Link px-5 py-1.5')}
+          >
             Home
-          </Link>
-        </li>
+          </NavLink>
+        </NavigationListItem>
         {isLoggedIn ? (
           <>
-            <li className="header__item">
-              <Link to={'/contacts'} className="header__Link">
+            <NavigationListItem>
+              <NavLink
+                ref={ref}
+                to={'/contacts'}
+                className={clsx('header__Link px-5 py-1.5')}
+              >
                 Contacts
-              </Link>
-            </li>
-            <li>
+              </NavLink>
+            </NavigationListItem>
+            <li className="inline-flex items-center justify-center gap-5">
               <UserMenu />
             </li>
           </>
         ) : (
           <>
-            <li className="header__item">
-              <Link to={'/login'} className="header__Link">
+            <NavigationListItem>
+              <NavLink
+                ref={ref}
+                to={'/login'}
+                className={clsx('header__Link px-5 py-1.5')}
+              >
                 Log in
-              </Link>
-            </li>
-            <li className="header__item">
-              <Link to={'/register'} className="header__Link">
+              </NavLink>
+            </NavigationListItem>
+            <NavigationListItem>
+              <NavLink
+                ref={ref}
+                to={'/register'}
+                className={clsx('header__Link px-5 py-1.5')}
+              >
                 Register
-              </Link>
-            </li>
+              </NavLink>
+            </NavigationListItem>
           </>
         )}
       </ul>

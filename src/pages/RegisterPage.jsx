@@ -1,3 +1,6 @@
+import ContactLabel from 'components/ContactLabel/ContactLabel';
+import LoginInput from 'components/LoginInput/LoginInput';
+import PrimaryButton from 'components/PrimaryButton/PrimaryButton';
 import { useFormik } from 'formik';
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -18,34 +21,34 @@ function RegisterPage() {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <label>
+      <ContactLabel>
         <span>Name</span>
-        <input
+        <LoginInput
           type="text"
           name="name"
           value={formik.values.name}
           onChange={formik.handleChange}
         />
-      </label>
-      <label>
+      </ContactLabel>
+      <ContactLabel>
         <span>Email</span>
-        <input
+        <LoginInput
           type="email"
           name="email"
           value={formik.values.email}
           onChange={formik.handleChange}
         />
-      </label>
-      <label>
+      </ContactLabel>
+      <ContactLabel>
         <span>Password</span>
-        <input
+        <LoginInput
           type="password"
           name="password"
           value={formik.values.password}
           onChange={formik.handleChange}
         />
-      </label>
-      <button type="submit">Register</button>
+      </ContactLabel>
+      <PrimaryButton type="submit">Register</PrimaryButton>
     </form>
   );
 }

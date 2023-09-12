@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { selectFilteredContactList } from 'redux/selectors';
 import { isOnList } from 'js/utils/isOnList';
-import style from './ContactForm.module.css';
 import { addContact, fetchContacts } from 'redux/contacts/contactsOperations';
 import { basicSchema } from 'js/validation/schema';
+import ContactInput from 'components/ContactInput/ContactInput';
+import PrimaryButton from 'components/PrimaryButton/PrimaryButton';
+import ContactLabel from 'components/ContactLabel/ContactLabel';
+import ContactError from 'components/ContactError/ContactError';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -44,9 +47,10 @@ export const ContactForm = () => {
 
   return (
     <form action="" onSubmit={handleSubmit}>
-      <label className={style.contact__label}>
+      <ContactLabel>
         Name
-        <input
+        <ContactInput
+          error={errors.name && touched.name}
           type="text"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           value={values.name}
@@ -54,11 +58,14 @@ export const ContactForm = () => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        {touched.name && errors.name && <p>{errors.name}</p>}
-      </label>
-      <label className={style.contact__label}>
+        {touched.name && errors.name && (
+          <ContactError>{errors.name}</ContactError>
+        )}
+      </ContactLabel>
+      <ContactLabel>
         Number
-        <input
+        <ContactInput
+          error={errors.number && touched.number}
           type="text"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           value={values.number}
@@ -66,11 +73,13 @@ export const ContactForm = () => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        {touched.number && errors.number && <p>{errors.number}</p>}
-      </label>
-      <button disabled={!canBeSubmitted(values, errors)} type="submit">
+        {touched.number && errors.number && (
+          <ContactError>{errors.number}</ContactError>
+        )}
+      </ContactLabel>
+      <PrimaryButton disabled={!canBeSubmitted(values, errors)} type="submit">
         Add contact
-      </button>
+      </PrimaryButton>
     </form>
     // <Formik
     //   enableReinitialize={true}

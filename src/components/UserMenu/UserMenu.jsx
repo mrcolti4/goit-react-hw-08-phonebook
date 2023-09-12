@@ -1,4 +1,5 @@
-import React from 'react';
+import RedButton from 'components/RedButton/RedButton';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from 'redux/auth/operations';
 import { selectUserData } from 'redux/auth/slice';
@@ -11,10 +12,10 @@ function UserMenu() {
     dispatch(logoutUser());
   };
   return (
-    <div>
+    <>
       <p>Hello, {userData.name}</p>
-      <button onClick={handleLogout}>Logout</button>
-    </div>
+      <RedButton handleLogout={handleLogout}>Log out</RedButton>
+    </>
   );
 }
 

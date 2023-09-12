@@ -1,3 +1,6 @@
+import ContactLabel from 'components/ContactLabel/ContactLabel';
+import LoginInput from 'components/LoginInput/LoginInput';
+import PrimaryButton from 'components/PrimaryButton/PrimaryButton';
 import { useFormik } from 'formik';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,20 +21,20 @@ function LoginPage() {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <label>
+    <form onSubmit={formik.handleSubmit} className="flex flex-col items-start">
+      <ContactLabel>
         <span>Email</span>
-        <input
+        <LoginInput
           type="email"
           required
           name="email"
           value={formik.values.email}
           onChange={formik.handleChange}
         />
-      </label>
-      <label>
+      </ContactLabel>
+      <ContactLabel>
         <span>Password</span>
-        <input
+        <LoginInput
           type="password"
           minLength={7}
           required
@@ -39,7 +42,7 @@ function LoginPage() {
           value={formik.values.password}
           onChange={formik.handleChange}
         />
-      </label>
+      </ContactLabel>
       <label>
         <span>Stay signed</span>
         <input
@@ -48,7 +51,7 @@ function LoginPage() {
           onChange={e => dispatch(setStayAuth(e.target.checked))}
         />
       </label>
-      <button type="submit">Log in</button>
+      <PrimaryButton type="submit">Log in</PrimaryButton>
     </form>
   );
 }
