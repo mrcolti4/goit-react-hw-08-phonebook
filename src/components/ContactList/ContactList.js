@@ -8,7 +8,6 @@ import {
   deleteContact,
   fetchContacts,
 } from 'redux/contacts/contactsOperations';
-import RedButton from 'components/RedButton/RedButton';
 import PrimaryButton from 'components/PrimaryButton/PrimaryButton';
 
 export const ContactList = () => {

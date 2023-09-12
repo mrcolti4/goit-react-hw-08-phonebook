@@ -2,7 +2,7 @@ import UserMenu from 'components/UserMenu/UserMenu';
 import NavigationListItem from './NavigationListItem';
 
 import { useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { selectIsLoggedIn } from 'redux/auth/slice';
 import clsx from 'clsx';
 import { useRef } from 'react';
@@ -10,7 +10,6 @@ import { useRef } from 'react';
 function Navigation() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const ref = useRef(null);
-  const classes = 'bg-emerald-700 shadow-lg shadow-emerald-500 text-white';
 
   return (
     <nav className="navigation">
