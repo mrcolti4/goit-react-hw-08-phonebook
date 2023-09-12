@@ -50,7 +50,7 @@ export const App = () => {
   const dispath = useDispatch();
   useEffect(() => {
     dispath(refreshUser());
-  }, []);
+  }, [dispath]);
   return (
     <Layout>
       <Routes>
